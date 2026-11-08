@@ -1,0 +1,49 @@
+---
+import { site } from '../data/site';
+import Logo from './Logo.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <div class="brandcol">
+      <a href="/" class="brand" aria-label={`${site.name} home`}><Logo size={34} /></a>
+      <p>{site.tagline}</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="/features">Features</a>
+        <a href="/how-it-works">How it works</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="/about">About</a>
+        <a href="/articles">Articles</a>
+      </div>
+    </div>
+  </div>
+  <div class="container legal">
+    <span>© {year} {site.name}. All rights reserved.</span>
+    <a href="https://aiharnx.com" class="maker">
+      <img src="/aiharnx-logo.png" alt="" width="22" height="22" />
+      A product of <strong>AI Harnx</strong>
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--border); background: var(--bg-2); padding: 3.5rem 0 2rem; margin-top: 0; }
+  .inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2.5rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.55rem; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+  .brand:hover { text-decoration: none; }
+  .brandcol p { color: var(--muted); max-width: 22rem; margin-top: 0.8rem; font-size: 0.95rem; }
+  .cols { display: flex; gap: 4rem; }
+  .cols div { display: flex; flex-direction: column; gap: 0.45rem; }
+  h4 { margin: 0 0 0.4rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .cols a { color: var(--text); font-size: 0.95rem; }
+  .legal { color: var(--muted); font-size: 0.85rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; }
+  .maker { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--muted); }
+  .maker img { border-radius: 5px; }
+  .maker strong { color: var(--text); }
+</style>

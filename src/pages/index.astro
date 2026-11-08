@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ChatMock from '../components/ChatMock.astro';
+import Icon from '../components/Icon.astro';
+import { site, SITE_URL } from '../data/site';
+import { features } from '../data/features';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: site.name, url: SITE_URL, logo: `${SITE_URL}/logo-512.png` },
+    { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: site.name, description: site.description, publisher: { '@id': `${SITE_URL}/#organization` } },
+    { '@type': 'SoftwareApplication', name: site.name, applicationCategory: 'BusinessApplication', description: site.description },
+  ],
+};
+
+const pillars = [
+  { icon: 'chat', title: 'Does the work, not just the talking', text: 'Hand over a task and get a finished result back — a report, an analysis, an update in the right system.' },
+  { icon: 'users', title: 'Built for teams', text: 'One shared assistant, set up once by an administrator and ready for everyone to use.' },
+  { icon: 'shield', title: 'Yours, and private', text: 'Runs on your own servers with your company sign-in. Your files and history stay on infrastructure you control.' },
+];
+
+const useCases = [
+  { title: 'Operations', text: 'Weekly reports, data clean-ups and status updates, prepared automatically and checked by a person.' },
+  { title: 'Customer support', text: 'Answers drafted from your own knowledge base, consistent in tone and always up to date.' },
+  { title: 'Engineering', text: 'Investigate issues, review changes and write release notes across your codebase.' },
+  { title: 'Sales & marketing', text: 'Research accounts, draft proposals and turn raw notes into polished content.' },
+];
+
+const steps = [
+  { n: '1', title: 'Set it up once', text: 'Install Wappclaw on your servers and connect the tools and knowledge your team relies on.' },
+  { n: '2', title: 'Invite your team', text: 'People sign in with their company accounts and start handing over work in a simple chat.' },
+  { n: '3', title: 'Automate what repeats', text: 'Turn the jobs that work well into workflows that run on demand or on a schedule.' },
+];
+---
+
+<BaseLayout title={`${site.name} — An AI teammate that gets real work done`} structuredData={structuredData}>
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">AI for teams</span>
+        <h1>An AI teammate that <span class="gradient-text">gets real work done.</span></h1>
+        <p class="lead">
+          Wappclaw gives your team an assistant that understands your business, works with your tools and finishes the
+          job — while you stay in control.
+        </p>
+        <div class="btn-row">
+          <a href={site.portalUrl} class="btn btn-primary">Get started <Icon name="arrow" size={18} /></a>
+          <a href="/how-it-works" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-visual"><ChatMock /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid-3">
+      {pillars.map((p) => (
+        <div class="card">
+          <div class="icon-badge"><Icon name={p.icon} /></div>
+          <h3>{p.title}</h3>
+          <p class="muted">{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">What you get</span>
+        <h2>Everything your assistant needs, in one place.</h2>
+        <p class="lead">From a quick question to a fully automated workflow — set up once, used by everyone.</p>
+      </div>
+      <div class="grid grid-3 features">
+        {features.map((f) => (
+          <a href={`/features#${f.id}`} class="card feature">
+            <div class="icon-badge"><Icon name={f.icon} /></div>
+            <h3>{f.title}</h3>
+            <p class="muted">{f.summary}</p>
+            <span class="more">Learn more <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Use cases</span>
+        <h2>Useful across the whole company.</h2>
+      </div>
+      <div class="grid grid-2 uses">
+        {useCases.map((u) => (
+          <div class="card use">
+            <h3>{u.title}</h3>
+            <p class="muted">{u.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">How it works</span>
+        <h2>Up and running in days, not months.</h2>
+      </div>
+      <ol class="grid grid-3 steps">
+        {steps.map((s) => (
+          <li class="card">
+            <span class="num">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Ready to meet your new teammate?</h2>
+        <p class="lead">Hand over the work your team spends too much time on, and see what Wappclaw can take off your plate.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a href={site.portalUrl} class="btn btn-primary">Get started</a>
+          <a href="/features" class="btn btn-ghost">Explore features</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { position: relative; padding: 9rem 0 5rem; overflow: hidden; }
+  .glow {
+    position: absolute; inset: -20% -10% auto; height: 120%; z-index: -1;
+    background:
+      radial-gradient(40% 50% at 78% 40%, rgba(0, 140, 210, 0.13), transparent 70%),
+      radial-gradient(35% 40% at 15% 15%, rgba(0, 210, 170, 0.14), transparent 70%);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.5rem; align-items: center; }
+  .hero-copy .lead { margin: 1.2rem 0 2rem; }
+  .hero-visual { display: flex; justify-content: center; }
+  .muted { color: var(--muted); margin: 0; }
+  .features, .uses, .steps { margin-top: 3rem; }
+  .uses { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+  .feature { color: inherit; display: flex; flex-direction: column; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .feature:hover { text-decoration: none; border-color: rgba(var(--accent-rgb), 0.4); transform: translateY(-3px); }
+  .feature .muted { flex: 1; }
+  .more { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-top: 1.2rem; }
+  .use { border-left: 4px solid transparent; border-image: var(--grad) 1; border-image-slice: 0 0 0 1; }
+  .steps { list-style: none; padding: 0; }
+  .num { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--grad); color: #fff; font-weight: 800; margin-bottom: 1rem; }
+  .cta-band {
+    text-align: center; padding: 4rem 2rem; border-radius: 24px;
+    background: linear-gradient(135deg, #e3f7f2, #e4f1fb);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+  }
+  .cta-band .lead { margin: 0 auto 2rem; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .hero { padding-top: 7.5rem; }
+  }
+</style>

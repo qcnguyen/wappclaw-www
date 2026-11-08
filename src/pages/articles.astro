@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { articles } from '../data/articles';
+import { site } from '../data/site';
+
+const sorted = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<BaseLayout title={`Articles — ${site.name}`} description="How Wappclaw works, and why it is built the way it is.">
+  <section class="page-hero">
+    <div class="container center">
+      <span class="eyebrow">Articles</span>
+      <h1>Notes from building Wappclaw</h1>
+      <p class="lead">Design decisions, how-tos and the reasoning behind them.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:1rem">
+    {sorted.length > 0 ? (
+      <div class="container grid grid-3">
+        {sorted.map((a) => <ArticleCard article={a} />)}
+      </div>
+    ) : (
+      <div class="container center">
+        <p class="lead">No articles yet — check back soon.</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>

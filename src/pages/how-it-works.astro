@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const steps = [
+  { icon: 'server', title: 'We help you install it', text: 'Wappclaw runs on a server you control — in your cloud or your office. Setup takes an afternoon, and updates are a single step.' },
+  { icon: 'puzzle', title: 'Connect your tools and knowledge', text: 'From one admin console, connect the systems your team works in and add the documents the assistant should know.' },
+  { icon: 'users', title: 'Your team signs in', text: 'People use their existing company accounts. You decide who can use what.' },
+  { icon: 'chat', title: 'Hand over the work', text: 'Anyone can ask the assistant for help in a simple chat — and watch it get the job done.' },
+  { icon: 'flow', title: 'Automate what repeats', text: 'Turn proven tasks into workflows with approval steps, and run them on demand or on a schedule.' },
+];
+
+const faqs = [
+  { q: 'Where does my data live?', a: 'Conversations, files and settings are stored on your own servers. To do its work, the assistant sends what each task needs to the AI provider you choose — Anthropic or OpenAI — under your account with them.' },
+  { q: 'Which AI does it use?', a: 'Wappclaw works with leading AI models from Anthropic and OpenAI, and you can switch between them without changing anything for your team.' },
+  { q: 'Do my people need training?', a: 'No. If they can use a chat app, they can use Wappclaw.' },
+  { q: 'Can we start small?', a: 'Yes. Most teams start with one or two everyday jobs and grow from there.' },
+];
+---
+
+<BaseLayout title={`How it works — ${site.name}`} description="From install to your first automated workflow: how teams get started with Wappclaw.">
+  <section class="page-hero">
+    <div class="container center">
+      <span class="eyebrow">How it works</span>
+      <h1>From first conversation to everyday teammate.</h1>
+      <p class="lead">Five simple steps to put an AI assistant to work for your whole team.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="container narrow">
+      <ol class="timeline">
+        {steps.map((s, i) => (
+          <li>
+            <div class="marker"><Icon name={s.icon} /></div>
+            <div class="card">
+              <span class="eyebrow">Step {i + 1}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="center">Common questions</h2>
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        {faqs.map((f) => (
+          <div class="card">
+            <h3>{f.q}</h3>
+            <p style="color:var(--muted);margin:0">{f.a}</p>
+          </div>
+        ))}
+      </div>
+      <div class="center" style="margin-top:3rem">
+        <a href={site.portalUrl} class="btn btn-primary">Get started</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 760px; }
+  .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 23px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(#00c9a7, #006bb8); opacity: 0.35; }
+  .timeline li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 1.25rem; margin-bottom: 1.25rem; position: relative; }
+  .marker { width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid rgba(var(--accent-rgb), 0.3); display: grid; place-items: center; color: var(--accent); }
+  .timeline .eyebrow { margin-bottom: 0.3rem; }
+  .timeline h3 { margin-bottom: 0.4rem; }
+  .timeline p { color: var(--muted); margin: 0; }
+</style>

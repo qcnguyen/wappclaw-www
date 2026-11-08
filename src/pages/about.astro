@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const principles = [
+  { title: 'Your AI, on your terms', text: 'Wappclaw runs where your data already lives, and keeps every password and access key locked away on your own server.' },
+  { title: 'Built to outlast any one model', text: 'AI models change fast. Your setup, your workflows and your team’s habits stay the same when the model underneath changes.' },
+  { title: 'Show the work', text: 'Every step the assistant takes is visible, and every change is recorded. An assistant you cannot check is one nobody trusts.' },
+  { title: 'Humans decide', text: 'Questions, approval steps and reviewable changes keep a person in the loop wherever it matters.' },
+];
+---
+
+<BaseLayout title={`About — ${site.name}`} description="Why Wappclaw exists and the principles it is built on.">
+  <section class="page-hero">
+    <div class="container center">
+      <span class="eyebrow">About</span>
+      <h1>AI is powerful. Using it at work should be simple.</h1>
+      <p class="lead">
+        AI can already research, write, analyse and act. What most teams lack is a safe, familiar place to use it
+        together — connected to the right tools, grounded in the right knowledge, and overseen by people who can see
+        and control all of it. Wappclaw is that place.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="center">What we believe</h2>
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        {principles.map((p) => (
+          <div class="card">
+            <h3>{p.title}</h3>
+            <p style="color:var(--muted);margin:0">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <a href="https://aiharnx.com" class="card maker">
+        <img src="/aiharnx-logo.png" alt="AI Harnx logo" width="88" height="88" />
+        <div>
+          <span class="eyebrow">Who makes Wappclaw</span>
+          <h3>A product of AI Harnx</h3>
+          <p>
+            Wappclaw is built by AI Harnx, a company focused on helping teams put AI to work safely and
+            practically. Learn more at <span class="link">aiharnx.com</span>.
+          </p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container center">
+      <h2>Ready to try it?</h2>
+      <p class="lead">Set up Wappclaw for your team and hand over your first job.</p>
+      <a href={site.portalUrl} class="btn btn-primary">Get started</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .maker { display: flex; align-items: center; gap: 1.75rem; max-width: 760px; margin: 0 auto; color: inherit; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .maker:hover { text-decoration: none; border-color: rgba(var(--accent-rgb), 0.4); transform: translateY(-3px); }
+  .maker img { flex-shrink: 0; border-radius: 18px; }
+  .maker h3 { margin: 0.25rem 0 0.5rem; }
+  .maker p { color: var(--muted); margin: 0; }
+  .maker .link { color: var(--accent); font-weight: 600; }
+  @media (max-width: 560px) { .maker { flex-direction: column; text-align: center; } }
+</style>

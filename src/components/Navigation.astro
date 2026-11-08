@@ -1,0 +1,89 @@
+---
+import { site } from '../data/site';
+import Logo from './Logo.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/features', label: 'Features' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/about', label: 'About' },
+];
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner container">
+    <a href="/" class="brand" aria-label={`${site.name} home`}>
+      <Logo size={38} />
+    </a>
+
+    <nav class="links" aria-label="Main">
+      {links.map((l) => (
+        <a href={l.href} class={isActive(l.href) ? 'active' : ''} aria-current={isActive(l.href) ? 'page' : undefined}>
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <a href={site.portalUrl} class="btn btn-primary cta">Get started</a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile" id="mobileMenu" aria-label="Main (mobile)">
+    {links.map((l) => <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>)}
+    <a href={site.portalUrl} class="btn btn-primary">Get started</a>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled, .nav.open {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; gap: 2rem; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--text); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .brand:hover { text-decoration: none; }
+  .links { display: flex; gap: 1.6rem; margin-left: auto; }
+  .links a { color: var(--muted); font-weight: 500; font-size: 0.95rem; }
+  .links a:hover, .links a.active { color: var(--text); text-decoration: none; }
+  .links a.active { box-shadow: inset 0 -2px 0 var(--accent); padding-bottom: 2px; }
+  .cta { padding: 0.55rem 1.1rem; font-size: 0.9rem; }
+
+  .menu-btn { display: none; margin-left: auto; background: none; border: 0; padding: 0.5rem; cursor: pointer; }
+  .menu-btn span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; border-radius: 2px; }
+  .mobile { display: none; }
+
+  @media (max-width: 820px) {
+    .links, .cta { display: none; }
+    .menu-btn { display: block; }
+    .nav.open .mobile {
+      display: flex; flex-direction: column; gap: 0.25rem;
+      padding: 0.5rem 1.25rem 1.25rem;
+    }
+    .mobile a:not(.btn) { color: var(--muted); padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+    .mobile a.active { color: var(--text); }
+    .mobile .btn { margin-top: 1rem; justify-content: center; }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  const btn = document.getElementById('menuBtn');
+  const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

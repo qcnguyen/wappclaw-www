@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 38 1114 1114" role="img" aria-label="Wappclaw">
+  <rect x="70" y="38" width="1114" height="1114" rx="230" fill="#05070D"/>
+  <defs>
+    <linearGradient id="wc-left" x1="540" y1="285" x2="330" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00E5FF"/>
+      <stop offset="1" stop-color="#0062EA"/>
+    </linearGradient>
+    <linearGradient id="wc-right" x1="720" y1="285" x2="920" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00F5C4"/>
+      <stop offset="1" stop-color="#00AEDB"/>
+    </linearGradient>
+    <linearGradient id="wc-white" x1="0" y1="520" x2="0" y2="910" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E4EE"/>
+    </linearGradient>
+    <linearGradient id="wc-fold" x1="640" y1="660" x2="820" y2="880" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C4C4D8"/>
+      <stop offset="1" stop-color="#DCDCE8"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#wc-left)" d="M553 282 H497 Q470 282 448 303 L317 437 Q296 461 313 487 L444 671 Q452 683 461 671 L516 604 Q527 590 516 577 L442 476 Q432 463 442 451 L543 334 Q553 322 553 306 Z"/>
+  <path fill="url(#wc-right)" d="M705 282 H761 Q788 282 808 303 L937 437 Q958 461 941 487 L810 671 Q802 683 793 671 L738 604 Q727 590 738 577 L812 476 Q822 463 812 451 L715 334 Q705 322 705 306 Z"/>
+  <path fill="url(#wc-fold)" d="M686 610 L822 760 L752 862 L628 748 Z"/>
+  <path fill="url(#wc-white)" d="M148 518 L246 518 Q262 518 270 530 L443 757 L552 618 Q590 588 634 590 Q678 592 712 632 L628 748 L478 893 Q452 912 418 910 Q382 908 360 878 L140 532 Q134 518 148 518 Z"/>
+  <path fill="url(#wc-white)" d="M1106 518 Q1120 518 1114 532 L894 878 Q872 910 832 910 Q782 910 750 862 L740 848 L984 530 Q992 518 1008 518 Z"/>
+</svg>

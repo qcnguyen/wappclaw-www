@@ -1,0 +1,63 @@
+---
+// A drawn (not screenshotted) impression of the chat, so it stays sharp at any size.
+---
+
+<div class="window" role="img" aria-label="Illustration: the assistant prepares a monthly report and asks for approval before sending it">
+  <div class="titlebar">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="thread">Monthly sales report</span>
+  </div>
+
+  <div class="body">
+    <div class="msg user">Prepare this month’s sales report and send it to the leadership team.</div>
+
+    <div class="msg agent">
+      <div class="step"><span class="ok">✓</span> Pulled this month’s numbers from the CRM</div>
+      <div class="step"><span class="ok">✓</span> Compared them with last month and the target</div>
+      <div class="step"><span class="ok">✓</span> Drafted the report using your company template</div>
+      <p>The report is ready — revenue is up 12% on last month. <span class="caret"></span></p>
+      <div class="file"><span class="file-ico">📄</span> Sales report – October.pdf</div>
+    </div>
+
+    <div class="approval">
+      <div>
+        <strong>Ready to send to 6 people</strong>
+        <span>Waiting for your approval</span>
+      </div>
+      <span class="approve">Approve</span>
+    </div>
+  </div>
+
+  <div class="composer">
+    <span class="placeholder">Ask Wappclaw to do something…</span>
+    <span class="send">➤</span>
+  </div>
+</div>
+
+<style>
+  .window {
+    width: 100%; max-width: 520px; background: #fff;
+    border: 1px solid var(--border); border-radius: 20px;
+    box-shadow: 0 30px 70px rgba(16, 36, 70, 0.14), 0 4px 12px rgba(16, 36, 70, 0.05);
+    overflow: hidden; font-size: 0.92rem; text-align: left;
+  }
+  .titlebar { display: flex; align-items: center; gap: 0.4rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); background: #f7fbfb; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d3e4e4; }
+  .thread { margin-left: 0.6rem; font-weight: 650; }
+  .body { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .msg { padding: 0.8rem 1rem; border-radius: 14px; max-width: 92%; }
+  .msg p { margin: 0.7rem 0 0; }
+  .user { align-self: flex-end; background: var(--grad); color: #fff; }
+  .agent { background: var(--surface-2); }
+  .step { color: var(--muted); font-size: 0.86rem; margin-bottom: 0.25rem; }
+  .ok { color: var(--teal); font-weight: 700; margin-right: 0.35rem; }
+  .caret { display: inline-block; width: 7px; height: 1em; background: var(--accent); vertical-align: -2px; margin-left: 2px; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .file { margin-top: 0.7rem; display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 0.45rem 0.75rem; font-size: 0.85rem; font-weight: 600; }
+  .approval { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid rgba(240, 160, 30, 0.45); background: #fff8eb; border-radius: 14px; padding: 0.8rem 1rem; }
+  .approval div { display: flex; flex-direction: column; }
+  .approval span:not(.approve) { color: #9a6700; font-size: 0.82rem; }
+  .approve { background: var(--grad); color: #fff; padding: 0.35rem 0.95rem; border-radius: 999px; font-weight: 650; font-size: 0.85rem; white-space: nowrap; }
+  .composer { margin: 0 1.1rem 1.1rem; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 0.7rem 0.95rem; color: var(--muted); }
+  .send { color: var(--accent); }
+</style>

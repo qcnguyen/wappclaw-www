@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`Page not found — ${site.name}`} noindex>
+  <section class="page-hero" style="min-height:70vh">
+    <div class="container center">
+      <span class="eyebrow">404</span>
+      <h1>This page wandered off.</h1>
+      <p class="lead">The link may be old, or the page may have moved.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a href="/" class="btn btn-primary">Back home</a>
+        <a href="/features" class="btn btn-ghost">See features</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

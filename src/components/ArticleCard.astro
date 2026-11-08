@@ -1,0 +1,21 @@
+---
+import type { Article } from '../data/articles';
+export interface Props { article: Article; }
+const { article } = Astro.props;
+const date = new Date(article.date + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<a href={`/articles/${article.slug}`} class="card article">
+  <div class="tags">{article.tags.map((t) => <span class="tag">{t}</span>)}</div>
+  <h3>{article.title}</h3>
+  <p>{article.excerpt}</p>
+  <time datetime={article.date}>{date}</time>
+</a>
+
+<style>
+  .article { color: inherit; display: flex; flex-direction: column; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .article:hover { text-decoration: none; border-color: rgba(var(--accent-rgb), 0.4); transform: translateY(-3px); }
+  .tags { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  p { color: var(--muted); flex: 1; }
+  time { color: var(--muted); font-size: 0.85rem; }
+</style>

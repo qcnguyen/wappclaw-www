@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { features } from '../data/features';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title={`Features — ${site.name}`}
+  description="What Wappclaw can do for your team: a shared AI assistant, connected tools, company knowledge, workflows, mini-apps and enterprise-grade control."
+>
+  <section class="page-hero">
+    <div class="container center">
+      <span class="eyebrow">Features</span>
+      <h1>Everything your AI teammate can do.</h1>
+      <p class="lead">All of it included, and set up from one simple admin console.</p>
+      <nav class="toc" aria-label="Feature sections">
+        {features.map((f) => <a href={`#${f.id}`}>{f.short}</a>)}
+      </nav>
+    </div>
+  </section>
+
+  {features.map((f, i) => (
+    <section id={f.id} class={`section ${i % 2 === 0 ? 'section-alt' : ''}`}>
+      <div class="container row">
+        <div>
+          <div class="icon-badge"><Icon name={f.icon} /></div>
+          <h2>{f.title}</h2>
+          <p class="lead">{f.summary}</p>
+        </div>
+        <ul class="card check-list">
+          {f.points.map((p) => <li>{p}</li>)}
+        </ul>
+      </div>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .toc { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+  .toc a { font-size: 0.85rem; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 0.35rem 0.9rem; }
+  .toc a:hover { color: var(--text); border-color: rgba(var(--accent-rgb), 0.4); text-decoration: none; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .row .check-list { padding: 2rem; }
+  .row .check-list li { font-size: 1.02rem; margin-bottom: 0.9rem; }
+  @media (max-width: 860px) { .row { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } }
+</style>
