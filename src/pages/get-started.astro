@@ -9,10 +9,14 @@ import { site } from '../data/site';
       <span class="eyebrow">Get started</span>
       <h1>Install Wappclaw</h1>
       <p class="lead">On an Ubuntu server, in three steps.</p>
+      <p class="aside">
+        No Ubuntu server? <a href="/articles/run-wappclaw-in-a-docker-sandbox">Run it in an isolated Ubuntu sandbox</a>
+        on your Mac, Windows or Linux machine with Docker Sandboxes.
+      </p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:1rem">
     <div class="container narrow">
       <ol class="steps">
         <li class="card">
@@ -37,6 +41,10 @@ import { site } from '../data/site';
           <p>
             Buy a key at <a href={site.portalUrl}>portal.wappclaw.com</a>, then paste it in
             <strong>Admin → System settings → License</strong>.
+          </p>
+          <p class="note">
+            <strong>Just trying it out?</strong> Wappclaw runs without a license, so you can skip this step
+            for now and buy a key later.
           </p>
           <a href={site.portalUrl} class="btn btn-primary">Get a license</a>
         </li>
@@ -73,6 +81,11 @@ import { site } from '../data/site';
     background: #fff; color: var(--accent); font-weight: 600; cursor: pointer;
   }
   .copy:hover { border-color: rgba(var(--accent-rgb), 0.45); }
+  .aside { color: var(--muted); margin-top: 1rem; }
+  .steps .note {
+    padding: 0.8rem 1rem; border-radius: 10px; background: var(--surface-2);
+    border-left: 4px solid var(--accent); color: var(--text);
+  }
   .steps .os { margin: -0.4rem 0 0.9rem; }
   p code { background: var(--surface-2); padding: 0.1rem 0.35rem; border-radius: 6px; font-size: 0.9em; }
 </style>
