@@ -26,7 +26,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
       ))}
     </nav>
 
-    <a href={site.portalUrl} class="btn btn-primary cta">Get started</a>
+    <a href={site.getStartedUrl} class="btn btn-primary cta">Get started</a>
 
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -35,7 +35,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 
   <nav class="mobile" id="mobileMenu" aria-label="Main (mobile)">
     {links.map((l) => <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>)}
-    <a href={site.portalUrl} class="btn btn-primary">Get started</a>
+    <a href={site.getStartedUrl} class="btn btn-primary">Get started</a>
   </nav>
 </header>
 

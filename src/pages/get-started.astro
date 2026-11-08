@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`Get started — ${site.name}`} description="Install Wappclaw on Ubuntu and add your license key.">
+  <section class="page-hero">
+    <div class="container narrow">
+      <span class="eyebrow">Get started</span>
+      <h1>Install Wappclaw</h1>
+      <p class="lead">On an Ubuntu server, in three steps.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <ol class="steps">
+        <li class="card">
+          <h3>1. Install</h3>
+          <p class="os">OS: <strong>Ubuntu</strong></p>
+          <div class="cmd">
+            <pre><code>{site.installCommand}</code></pre>
+            <button class="copy" type="button" data-copy={site.installCommand}>Copy</button>
+          </div>
+        </li>
+
+        <li class="card">
+          <h3>2. Start</h3>
+          <div class="cmd">
+            <pre><code>wapp start</code></pre>
+            <button class="copy" type="button" data-copy="wapp start">Copy</button>
+          </div>
+        </li>
+
+        <li class="card">
+          <h3>3. Add a license</h3>
+          <p>
+            Buy a key at <a href={site.portalUrl}>portal.wappclaw.com</a>, then paste it in
+            <strong>Admin → System settings → License</strong>.
+          </p>
+          <a href={site.portalUrl} class="btn btn-primary">Get a license</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy').forEach((b) =>
+    b.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.copy ?? '');
+        b.textContent = 'Copied';
+        setTimeout(() => (b.textContent = 'Copy'), 1500);
+      } catch {}
+    }),
+  );
+</script>
+
+<style>
+  .narrow { max-width: 760px; }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+  .steps h3 { margin: 0 0 0.9rem; }
+  .steps p { color: var(--muted); margin: 0.9rem 0 0; }
+  .steps .btn { margin-top: 1.1rem; }
+  .cmd { display: flex; align-items: stretch; gap: 0.5rem; }
+  .cmd pre {
+    flex: 1; min-width: 0; margin: 0; padding: 0.8rem 1rem; overflow-x: auto;
+    background: #0f2a30; color: #e6f4f4; border-radius: 10px; font-size: 0.9rem;
+  }
+  .copy {
+    flex-shrink: 0; padding: 0 0.9rem; border: 1px solid var(--border); border-radius: 10px;
+    background: #fff; color: var(--accent); font-weight: 600; cursor: pointer;
+  }
+  .copy:hover { border-color: rgba(var(--accent-rgb), 0.45); }
+  .steps .os { margin: -0.4rem 0 0.9rem; }
+  p code { background: var(--surface-2); padding: 0.1rem 0.35rem; border-radius: 6px; font-size: 0.9em; }
+</style>

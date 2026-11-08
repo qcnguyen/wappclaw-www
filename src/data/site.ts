@@ -9,7 +9,10 @@ export const site = {
     'Wappclaw gives your team an AI assistant that does real work — connected to your tools and knowledge, running on your own servers, with you in control.',
   keywords:
     'AI assistant for teams, AI agent platform, workflow automation, private AI, self-hosted AI, business automation',
-  // Where every "Get started" button goes.
+  // Where every "Get started" button goes: the install guide.
+  getStartedUrl: '/get-started',
+  // Where a license key is bought.
   portalUrl: 'https://portal.wappclaw.com',
+  installCommand: 'curl -fsSL https://raw.githubusercontent.com/qcnguyen/wappclaw-dist/main/install.sh | bash',
   themeColor: '#ffffff',
 } as const;
